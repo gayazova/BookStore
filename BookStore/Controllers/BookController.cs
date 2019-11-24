@@ -16,7 +16,7 @@ namespace BookStore.Controllers
         }
 
         public ViewResult List(int page = 1) => View(repository.Books
-            .OrderBy(p=>p.Id)
+            .OrderBy(p=>p.Id) 
             .Skip((page - 1) * PageSize)
             .Take(PageSize));
     }
