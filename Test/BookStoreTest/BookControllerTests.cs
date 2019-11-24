@@ -30,7 +30,7 @@ namespace BookStoreTest
 
             //Утверждение
             var bookArray = (result ?? throw new InvalidOperationException()).ToArray();
-            Assert.True(bookArray.Length==2);
+            Assert.True(bookArray.Length == 2);
             Assert.Equal("Book4", bookArray[0].Title);
             Assert.Equal("Book5", bookArray[1].Title);
         }
