@@ -32,6 +32,10 @@ namespace BookStore
             app.UseMvcWithDefaultRoute();
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "pagination",
+                    template: "Books/Page{page}",
+                    defaults: new {Controller = "Book", action = "List"});
                 routes.MapRoute(name: "default", template: "{controller=Book}/{action=List}/{id?}");
             });
         }

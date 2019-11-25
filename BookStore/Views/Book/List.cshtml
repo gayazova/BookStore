@@ -1,11 +1,13 @@
 ﻿@model BooksListViewModel
 @foreach (var b in Model.Books)
 {
-<div>
-    <h3>@b.Title</h3>
-    @b.Price.ToString("c")
-    @b.Number
-    @b.PublicationYear
-</div>
+    <div>
+        <h3>@b.Title</h3>
+        @b.Price.ToString("c")
+        @b.Number
+        @b.PublicationYear
+    </div>
 }
+
+<div page-model="@Model.PageInfo" page-action="List"></div>
 
