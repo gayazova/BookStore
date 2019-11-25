@@ -3,11 +3,20 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" asp-href-include="wwwroot/lib/bootstrap/dist/css/*.min.css"/>
     <title>BookStore</title>
 </head>
 <body>
-    <div>
+<div class="navbar navbar-light" role="navigation">
+    <a class="navbar-brand" href="#">Book Store</a>
+</div>
+<div class="row panel">
+    <div id="genres" class="col-xs-3">
+        Put something useful here later
+    </div>
+    <div class="col-xs-8">
         @RenderBody()
     </div>
+</div>
 </body>
 </html>

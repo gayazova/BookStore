@@ -1,7 +1,7 @@
 ﻿@model BooksListViewModel
 @foreach (var b in Model.Books)
 {
-    <div>
+    <div class="well">
         <h3>@b.Title</h3>
         @b.Price.ToString("c")
         @b.Number
