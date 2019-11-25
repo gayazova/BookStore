@@ -1,5 +1,5 @@
-﻿@model IEnumerable<Book>
-@foreach (var b in Model)
+﻿@model BooksListViewModel
+@foreach (var b in Model.Books)
 {
 <div>
     <h3>@b.Title</h3>

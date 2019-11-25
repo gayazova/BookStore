@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using BookStore.Controllers;
 using BookStore.Models;
+using BookStore.Models.ViewModels;
 using Moq;
 using Xunit;
 
@@ -26,10 +26,11 @@ namespace BookStoreTest
             {
                 PageSize = 3
             };
-            var result = controller.List(2).ViewData.Model as IEnumerable<Book>;
+            var result = controller.List(2).ViewData.Model as BooksListViewModel;
 
             //Утверждение
-            var bookArray = (result ?? throw new InvalidOperationException()).ToArray();
+            if (result == null) return;
+            var bookArray = (result.Books ?? throw new InvalidOperationException()).ToArray();
             Assert.True(bookArray.Length == 2);
             Assert.Equal("Book4", bookArray[0].Title);
             Assert.Equal("Book5", bookArray[1].Title);

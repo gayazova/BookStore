@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using BookStore.Models;
+using BookStore.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers
@@ -15,9 +16,18 @@ namespace BookStore.Controllers
             repository = repo;
         }
 
-        public ViewResult List(int page = 1) => View(repository.Books
-            .OrderBy(p=>p.Id) 
-            .Skip((page - 1) * PageSize)
-            .Take(PageSize));
+        public ViewResult List(int page = 1) => View(new BooksListViewModel
+        {
+            Books = repository.Books
+                .OrderBy(p=>p.Id)
+                .Skip((page-1)*PageSize)
+                .Take(PageSize),
+            PageInfo = new PageInfo
+            {
+                CurrentPage = page,
+                ItemsPerPage = PageSize,
+                TotalItems = repository.Books.Count()
+            }
+        });
     }
 }

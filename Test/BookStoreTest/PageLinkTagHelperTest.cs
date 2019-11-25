@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using BookStore.Controllers;
 using BookStore.Infrastructure;
+using BookStore.Models;
 using BookStore.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -49,6 +51,35 @@ namespace BookStoreTest
             Assert.Equal(@"<a href=""Test/Page1"">1</a>" 
                          + @"<a href=""Test/Page2"">2</a>" 
                          + @"<a href=""Test/Page3"">3</a>", output.Content.GetContent());
+        }
+
+        [Fact]
+        public void CanSendPaginationViewModel()
+        {
+            //Организация
+            Mock<IBookRepository> mock = new Mock<IBookRepository>();
+            mock.Setup(m => m.Books).Returns(new[]
+            {
+                new Book {Id = 1, Title = "T1"},
+                new Book {Id = 2, Title = "T2"},
+                new Book {Id = 3, Title = "T3"},
+                new Book {Id = 4, Title = "T4"},
+                new Book {Id = 5, Title = "T5"},
+            });
+
+            //Организация
+            BookController controller = new BookController(mock.Object) {PageSize = 3};
+
+            //Действие
+            BooksListViewModel result = controller.List(2).ViewData.Model as BooksListViewModel;
+
+            //Утверждение
+            if (result == null) return;
+            var pageInfo = result.PageInfo;
+            Assert.Equal(2, pageInfo.CurrentPage);
+            Assert.Equal(3, pageInfo.ItemsPerPage);
+            Assert.Equal(5, pageInfo.TotalItems);
+            Assert.Equal(2, pageInfo.TotalPages);
         }
     }
 }
