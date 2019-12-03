@@ -2,10 +2,20 @@
 @foreach (var b in Model.Books)
 {
     <div class="well">
-        <h3>@b.Title</h3>
-        @b.Price.ToString("c")
-        @b.Number
-        @b.PublicationYear
+        <h3>
+            <strong>@b.Title</strong>
+            <span class="pull-right label label-primary">
+                @b.Price.ToString("c")
+                @b.Number
+                @b.PublicationYear
+            </span>
+        </h3>
+        <span class="lead">@b.PublishingHouse</span>
+    </div>
+    <div page-model="@Model.PageInfo" page-action="List"
+         page-classes-enabled="true"
+         page-class="btn" page-class-normal="btn-default"
+         page-class-selected="btn-primary" class="btn-group pull-right">
     </div>
 }
 
