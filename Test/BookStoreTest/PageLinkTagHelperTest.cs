@@ -68,13 +68,13 @@ namespace BookStoreTest
                 new Book {Id = 5, Title = "T5"},
             });
 
-            //Организация
+            // Организация
             BookController controller = new BookController(mock.Object) {PageSize = 3};
 
-            //Действие
+            // Действие
             BooksListViewModel result = controller.List(2).ViewData.Model as BooksListViewModel;
 
-            //Утверждение
+            // Утверждение
             if (result == null) return;
             var pageInfo = result.PageInfo;
             Assert.Equal(2, pageInfo.CurrentPage);
