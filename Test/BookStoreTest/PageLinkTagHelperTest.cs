@@ -53,6 +53,7 @@ namespace BookStoreTest
                          + @"<a href=""Test/Page3"">3</a>", output.Content.GetContent());
         }
 
+
         [Fact]
         public void CanSendPaginationViewModel()
         {
