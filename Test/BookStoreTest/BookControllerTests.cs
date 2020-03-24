@@ -8,7 +8,7 @@ using Xunit;
 
 namespace BookStoreTest
 {
-    public class BookControllerTests
+    public class BookControllerTests 
     {
         [Fact]
         public void CanPaginate()
